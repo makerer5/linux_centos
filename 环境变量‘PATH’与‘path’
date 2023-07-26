@@ -24,6 +24,8 @@ PATH=$PATH:/home/disk/project/database/pipeline.sh
 比如，一般的操作系统都会有系统的python和R，通常版本比较老，我们作为普通用户也没权限修改。
 那怎么办？自己装一份新的python和R，然后用自己的，这时就涉及到优先级问题了。
 假如我在/home/YSX/soft/anaconda/bin下安装了一个python，那么我需要设置优先调用我自己的python，设置环境变量时，我就得把/home/YSX/soft/anaconda/bin放到前面，如export PATH=/home/YSX/soft/anaconda/bin:$PATH。如果反过来写，那么/usr/bin/python就会优先被调用了。
-# 长期使‘PATH’变量运行，只需要将上述的PATH变量写入~/.bash_profile
+# 长期使‘PATH’变量运行，远程登陆用户只需要将上述的PATH变量写入~/.bash_profile，本地用户则写入~/.bashrc
 并且运行以下命令，使设置生效
 source ~/.bash_profile
+如果想在系统层面设置环境变量，应该写到/etc/profile.d/custom.sh里面（文件若无，可新建）。
+设置环境变量要注意2点：1. 设置新的环境变量时一般要包含原始的环境变量，不能覆盖；2. 注意自己的目录和系统环境变量的目录的顺序，想让哪个先被找到，就先放哪个。
